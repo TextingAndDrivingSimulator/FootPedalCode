@@ -74,6 +74,7 @@ class KeyboardKey {
 };
 
 KeyboardKey keyW(12,11,'w',5,false);
+KeyboardKey keyS(10,9,'s',5,false);
 void setup() {
   // put your setup code here, to run once:
   Keyboard.begin();
@@ -82,6 +83,7 @@ void setup() {
 
 void loop() {
   keyW.update();
+  keyS.update();
   delay(5);
 
 }
