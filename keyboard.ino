@@ -77,13 +77,31 @@ KeyboardKey keyW(12,11,'w',5,false);
 KeyboardKey keyS(10,9,'s',5,false);
 void setup() {
   // put your setup code here, to run once:
+  pinMode(A1,INPUT);
   Keyboard.begin();
 
+  Serial.begin(9600);
+  Serial.println("Starting serial!");
+
 }
+
+
+
+
 
 void loop() {
   keyW.update();
   keyS.update();
-  delay(5);
+  delay(10);
+
+
+  
+  // Analog read is 0-1023, so we use two bytes to send the result over!
+  short value = analogRead(A1);
+  byte buff[2];
+  buff[0] = value & 0x00FF;
+  buff[1] = (value >> 8) & 0x00FF;
+  Serial.write(buff,2);
+  
 
 }
